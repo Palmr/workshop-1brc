@@ -1,13 +1,24 @@
 # Workshop #1brc
 
+Original challenge: https://github.com/gunnarmorling/1brc
+
+This repo was used for a workshop given internally at LMAX as well as at Devoxx UK 2024:
+https://docs.google.com/presentation/d/1XA78LGgj9ldSPr5mjDAZQHzXQPFB7sowgfLhH0kQg3Y/edit?usp=sharing
+
 ## Setup
 
- - Linux
- - perf (see distro package install instructions)
+ - Linux (Some things may work on a Mac or WSL, YMMV)
  - [sdkman](https://sdkman.io/)
- - [jbang](https://www.jbang.dev/)
+ - JDKs
+     - `sdk install java 21.0.5-tem`
+     - `sdk install java 21.0.5-graalce`
+ - [jbang](https://www.jbang.dev/) (you can use `sdk install jbang` to have sdkman install this)
  - [hyperfine](https://github.com/sharkdp/hyperfine)
- - [async profiler](https://github.com/async-profiler/async-profiler)
+ - [async profiler](https://github.com/async-profiler/async-profiler) (jbang can automatically get this, see `./run_benchmark_once_with_async_profiler.sh`)
+ - [perf](https://perfwiki.github.io/main/) (see distro package install instructions)
+
+I'm using Intellij with the JBang plugin. I have Intellij set up with JVM's installed by sdkman and language level for 
+the project set to `21 Preview` since 1brc was about enjoying new Java features.
 
 ## Creating the dataset
 
@@ -31,8 +42,8 @@ ln --force --symbolic measurements.100.txt measurements.txt
 ### First run
 
 ```bash
-sdk install java 21.0.2-tem
-sdk use java 21.0.2-tem
+sdk install java 21.0.5-tem
+sdk use java 21.0.5-tem
 java -version
 
 ./run_benchmark.sh ANonPerfApproach.java
@@ -41,8 +52,8 @@ java -version
 ### Graal VM
 
 ```bash
-sdk install java 21.0.2-graalce
-sdk use java 21.0.2-graalce
+sdk install java 21.0.5-graalce
+sdk use java 21.0.5-graalce
 java -version
 
 ./run_benchmark.sh ANonPerfApproach.java
